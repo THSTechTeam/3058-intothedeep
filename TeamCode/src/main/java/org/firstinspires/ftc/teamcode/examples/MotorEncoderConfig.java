@@ -1,9 +1,10 @@
 package org.firstinspires.ftc.teamcode.examples;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-
+@Disabled
 // 1. Find and set our desired zero position.
 // 2. Find all desired preset motor positions.
 // 3. Establish a control scheme.
