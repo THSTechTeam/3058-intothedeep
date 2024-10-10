@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.Templates;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -48,6 +48,7 @@ public class Modular_Autonomous extends LinearOpMode {
         MotorBR.setPower(power);
         MotorBL.setPower(power);
         sleep(time);
+        stop_motors();
     }
 
     public void turn(double power, long time) {
@@ -57,6 +58,7 @@ public class Modular_Autonomous extends LinearOpMode {
         MotorBR.setPower(-power);
         MotorBL.setPower(power);
         sleep(time);
+        stop_motors();
     }
 
     public void strafe(double power, long time) {
@@ -66,6 +68,7 @@ public class Modular_Autonomous extends LinearOpMode {
         MotorBR.setPower(power);
         MotorBL.setPower(-power);
         sleep(time);
+        stop_motors();
     }
     public void stop_motors() {
         MotorFR.setPower(0);

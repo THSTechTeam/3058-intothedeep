@@ -1,14 +1,9 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.obsolete_code;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.Servo;
-
-import java.util.Arrays;
-import java.util.List;
 
 @TeleOp(name="3058 Mecanum TeleOp", group="TeleOp")
 public class   MecanumTeleOp extends LinearOpMode {
@@ -62,7 +57,6 @@ public class   MecanumTeleOp extends LinearOpMode {
                    } if (gamepad1.a) {
                        ReverseDrive = false;
                    }
-
                    double drive = -gamepad1.left_stick_y;
             double strafe = gamepad1.left_stick_x;
             double twist = -gamepad1.right_stick_x;
