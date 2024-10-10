@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@TeleOp(name = "Reverse_Mecanum")
-public class Reverse_Drive extends LinearOpMode
+@TeleOp(name = "Mecanum_Teleop_3058")
+public class Mecanum_Teleop_3058 extends LinearOpMode
 {
     private DcMotor MotorFR;
     private DcMotor MotorFL;
