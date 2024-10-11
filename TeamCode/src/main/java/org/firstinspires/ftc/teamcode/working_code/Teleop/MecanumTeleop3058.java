@@ -1,13 +1,12 @@
-package org.firstinspires.ftc.teamcode.working_code;
+package org.firstinspires.ftc.teamcode.working_code.Teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-
-@TeleOp(name = "Mecanum_Teleop_3058")
-public class Mecanum_Teleop_3058 extends LinearOpMode
+@TeleOp(name = "MecanumTeleop3058")
+public class MecanumTeleop3058 extends LinearOpMode
 {
     private DcMotor MotorFR;
     private DcMotor MotorFL;
@@ -59,23 +58,7 @@ public class Mecanum_Teleop_3058 extends LinearOpMode
                 PowerFR = -PowerFR;
                 PowerBR = -PowerBR;
             }
-            // Below is the motor tests
-//            PowerFR = gamepad1.a ? 1.0 : 0.0;  // A
-//            PowerFL = gamepad1.y ? 1.0 : 0.0;  //
-//            PowerBR = gamepad1.b ? 1.0 : 0.0;  // B
-//            PowerBL = gamepad1.x ? 1.0 : 0.0;  // X
-            // Servo tests
-            /*
-                if (gamepad1.a) {
-                    Grabber.setPower(1);
-            }
-                if (gamepad1.b) {
-                    Grabber.setPower(0);
-                }
-                //if (gamepad1.y) {
-                    //Grabber.setPosition(-1);
-                //}
-             */
+
             MotorFR.setPower(PowerFR);
             MotorFL.setPower(PowerFL);
             MotorBR.setPower(PowerBR);

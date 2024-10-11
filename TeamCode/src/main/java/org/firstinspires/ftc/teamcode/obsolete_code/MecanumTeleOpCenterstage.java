@@ -1,12 +1,13 @@
 package org.firstinspires.ftc.teamcode.obsolete_code;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-
+@Disabled
 @TeleOp(name="3058 Mecanum TeleOp", group="TeleOp")
-public class   MecanumTeleOp extends LinearOpMode {
+public class MecanumTeleOpCenterstage extends LinearOpMode {
 
     private DcMotor motorFrontLeft;
     private DcMotor motorFrontRight;
