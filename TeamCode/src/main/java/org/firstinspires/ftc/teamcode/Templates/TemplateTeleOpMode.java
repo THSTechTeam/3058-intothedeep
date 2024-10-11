@@ -1,8 +1,9 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.Templates;
 
-import com.qualcomm.robotcore.eventloop.opmode.*;   
-import com.qualcomm.robotcore.hardware.*;
-
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+@Disabled
 @TeleOp(name = "Template Tele Op Mode")
 public class TemplateTeleOpMode extends LinearOpMode {
     @Override

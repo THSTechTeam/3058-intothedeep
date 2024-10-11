@@ -1,10 +1,10 @@
 package org.firstinspires.ftc.teamcode.examples;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.util.ElapsedTime;
-
+@Disabled
 @Autonomous
 // AdvancedDriveByTime auto drives around the center of the field and does a
 // dance at the end.

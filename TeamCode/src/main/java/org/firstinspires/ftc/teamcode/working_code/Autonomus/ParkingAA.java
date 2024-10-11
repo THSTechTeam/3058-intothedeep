@@ -1,12 +1,12 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.working_code.Autonomus;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@Autonomous(name = "Mod Auto", group = "Autonomous")
-public class Modular_Autonomous extends LinearOpMode {
+@Autonomous(name = "RedParkingAA")
+public class ParkingAA extends LinearOpMode {
 
     //call motors here
     private DcMotor MotorFR;
@@ -18,27 +18,22 @@ public class Modular_Autonomous extends LinearOpMode {
 
     public void runOpMode() throws InterruptedException {
 
-        MotorFR = hardwareMap.dcMotor.get("motorFrontLeft");
-        MotorFL = hardwareMap.dcMotor.get("motorFrontRight");
-        MotorBR = hardwareMap.dcMotor.get("motorBackLeft");
+        MotorFR = hardwareMap.dcMotor.get("MotorFR");
+        MotorFL = hardwareMap.dcMotor.get("MotorFL");
+        MotorBR = hardwareMap.dcMotor.get("MotorBR");
         MotorBL = hardwareMap.dcMotor.get("MotorBL");
 
 
-
-        MotorFL.setDirection(DcMotorSimple.Direction.REVERSE);
-        MotorBL.setDirection(DcMotorSimple.Direction.REVERSE);
+        MotorFR.setDirection(DcMotorSimple.Direction.REVERSE);
         MotorFR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         MotorFL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         MotorBR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         MotorBL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         waitForStart();
 
-        while(opModeIsActive()) {
-            drive(1, 2000);
-            strafe(1, 2000);
-            turn(1, 2000);
-            stop_motors();
-        }
+        drive(0.25, 200);
+        strafe(0.5, 1900);
+        drive(-0.25, 50);
     }
 
     public void drive(double power, long time) {
@@ -48,6 +43,7 @@ public class Modular_Autonomous extends LinearOpMode {
         MotorBR.setPower(power);
         MotorBL.setPower(power);
         sleep(time);
+        stop_motors();
     }
 
     public void turn(double power, long time) {
@@ -57,6 +53,8 @@ public class Modular_Autonomous extends LinearOpMode {
         MotorBR.setPower(-power);
         MotorBL.setPower(power);
         sleep(time);
+        stop_motors();
+
     }
 
     public void strafe(double power, long time) {
@@ -66,7 +64,9 @@ public class Modular_Autonomous extends LinearOpMode {
         MotorBR.setPower(power);
         MotorBL.setPower(-power);
         sleep(time);
+        stop_motors();
     }
+
     public void stop_motors() {
         MotorFR.setPower(0);
         MotorFL.setPower(0);
@@ -74,4 +74,5 @@ public class Modular_Autonomous extends LinearOpMode {
         MotorBL.setPower(0);
 
     }
+
 }
