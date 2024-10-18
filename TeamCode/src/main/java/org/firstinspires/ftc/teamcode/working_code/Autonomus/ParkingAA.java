@@ -72,7 +72,16 @@ public class ParkingAA extends LinearOpMode {
         MotorFL.setPower(0);
         MotorBR.setPower(0);
         MotorBL.setPower(0);
-
     }
-
+    //IMPORTANT-Below Is Extra Advanced Auto Features, Do Not use If You are New to Autonomous writing or Don't Write Code
+    public void DiagLeft(double power, long time){
+        // + = Forward Left, - = Backward Right
+        MotorFR.setPower(power);
+        MotorBL.setPower(power);
+    }
+    public void DiagRight(double power, long time){
+        // + = Forward Right, - = Backward Left
+        MotorFL.setPower(power);
+        MotorBR.setPower(power);
+    }
 }

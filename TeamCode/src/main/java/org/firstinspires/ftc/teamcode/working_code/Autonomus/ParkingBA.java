@@ -66,7 +66,6 @@ public class ParkingBA extends LinearOpMode {
         sleep(time);
         stop_motors();
     }
-
     public void stop_motors() {
         MotorFR.setPower(0);
         MotorFL.setPower(0);
@@ -75,4 +74,15 @@ public class ParkingBA extends LinearOpMode {
 
     }
 
+    //IMPORTANT-Below Is Extra Advanced Auto Features, Do Not use If You are New to Autonomous writing or Don't Write Code
+    public void DiagLeft(double power, long time){
+        // + = Forward Left, - = Backward Right
+        MotorFR.setPower(power);
+        MotorBL.setPower(power);
+    }
+    public void DiagRight(double power, long time){
+        // + = Forward Right, - = Backward Left
+        MotorFL.setPower(power);
+        MotorBR.setPower(power);
+    }
 }
