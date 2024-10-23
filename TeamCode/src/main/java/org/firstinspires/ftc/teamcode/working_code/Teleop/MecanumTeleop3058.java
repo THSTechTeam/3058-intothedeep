@@ -33,15 +33,16 @@ public class MecanumTeleop3058 extends LinearOpMode
         waitForStart();
         while (opModeIsActive()) {
 
-            if (gamepad1.x) {
+            /*if (gamepad1.x) {
                 ReverseDrive = true;
             } if (gamepad1.y) {
                 ReverseDrive = false;
             }
+             */
 
             double drive = -gamepad1.left_stick_y;
             double strafe = gamepad1.left_stick_x;
-            double turn = gamepad1.right_stick_x;
+            double turn = -gamepad1.right_stick_x;
             double max = Math.max(Math.abs(strafe) + Math.abs(drive) + Math.abs(turn), 1);
 
 
