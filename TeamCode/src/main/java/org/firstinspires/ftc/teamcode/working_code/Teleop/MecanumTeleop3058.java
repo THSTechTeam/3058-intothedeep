@@ -58,6 +58,30 @@ public class MecanumTeleop3058 extends LinearOpMode
                 PowerFR = -PowerFR;
                 PowerBR = -PowerBR;
             }
+            if (gamepad1.dpad_up) {
+                MotorFR.setPower(0.5);
+                MotorFL.setPower(0.5);
+                MotorBR.setPower(0.5);
+                MotorBL.setPower(0.5);
+            }
+            if (gamepad1.dpad_down) {
+                MotorFR.setPower(-0.5);
+                MotorFL.setPower(-0.5);
+                MotorBR.setPower(-0.5);
+                MotorBL.setPower(-0.5);
+            }
+            if (gamepad1.dpad_left) {
+                MotorFR.setPower(0.5);
+                MotorFL.setPower(-0.5);
+                MotorBR.setPower(-0.5);
+                MotorBL.setPower(0.5);
+            }
+            if (gamepad1.dpad_right) {
+                MotorFR.setPower(-0.5);
+                MotorFL.setPower(0.5);
+                MotorBR.setPower(0.5);
+                MotorBL.setPower(-0.5);
+            }
 
             MotorFR.setPower(PowerFR);
             MotorFL.setPower(PowerFL);

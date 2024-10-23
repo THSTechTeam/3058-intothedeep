@@ -1,12 +1,12 @@
-package org.firstinspires.ftc.teamcode.working_code.Autonomus;
+package org.firstinspires.ftc.teamcode.working_code.Testing;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@Autonomous(name = "RedParkingBA")
-public class ParkingBA extends LinearOpMode {
+@Autonomous(name = "AutonomusTesting")
+public class AutonomusTesting extends LinearOpMode {
 
     //call motors here
     private DcMotor MotorFR;
@@ -31,9 +31,11 @@ public class ParkingBA extends LinearOpMode {
         MotorBL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         waitForStart();
 
-        drive(0.25, 200);
-        strafe(0.5, 3150);
-        drive(-0.25, 50);
+        DiagRight(1, 200);
+        DiagRight(-1, 200);
+        DiagLeft(1, 200);
+        DiagLeft(-1,200);
+
     }
 
     public void drive(double power, long time) {
@@ -66,23 +68,24 @@ public class ParkingBA extends LinearOpMode {
         sleep(time);
         stop_motors();
     }
+
     public void stop_motors() {
         MotorFR.setPower(0);
         MotorFL.setPower(0);
         MotorBR.setPower(0);
         MotorBL.setPower(0);
-
     }
-
     //IMPORTANT-Below Is Extra Advanced Auto Features, Do Not use If You are New to Autonomous writing or Don't Write Code
     public void DiagLeft(double power, long time){
         // + = Forward Left, - = Backward Right
         MotorFR.setPower(power);
         MotorBL.setPower(power);
+        stop_motors();
     }
     public void DiagRight(double power, long time){
         // + = Forward Right, - = Backward Left
         MotorFL.setPower(power);
         MotorBR.setPower(power);
+        stop_motors();
     }
 }
