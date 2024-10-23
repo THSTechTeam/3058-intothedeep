@@ -80,12 +80,14 @@ public class AutonomusTesting extends LinearOpMode {
         // + = Forward Left, - = Backward Right
         MotorFR.setPower(power);
         MotorBL.setPower(power);
+        sleep(time);
         stop_motors();
     }
     public void DiagRight(double power, long time){
         // + = Forward Right, - = Backward Left
         MotorFL.setPower(power);
         MotorBR.setPower(power);
+        sleep(time);
         stop_motors();
     }
 }
