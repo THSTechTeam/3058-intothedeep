@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@Autonomous(name = "RedParkingAA")
+@Autonomous(name = "ParkingAA")
 public class ParkingAA extends LinearOpMode {
 
     //call motors here
@@ -32,7 +32,7 @@ public class ParkingAA extends LinearOpMode {
         waitForStart();
 
         drive(0.25, 200);
-        strafe(0.5, 1900);
+        strafe(0.5, 2000    );
         drive(-0.25, 50);
     }
 
