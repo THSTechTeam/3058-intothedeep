@@ -1,13 +1,13 @@
-package org.firstinspires.ftc.teamcode.Templates;
+package org.firstinspires.ftc.teamcode.working_code.Autonomus;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-@Disabled
-@Autonomous(name = "Mod Auto", group = "Autonomous")
-public class Modular_Autonomous extends LinearOpMode {
+
+@Autonomous(name = "subAutoPark", group = "Autonomous")
+public class subAutoPark extends LinearOpMode {
 
     //call motors here
     private DcMotor MotorFR;
@@ -32,11 +32,16 @@ public class Modular_Autonomous extends LinearOpMode {
         MotorBL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         waitForStart();
 
-            drive(1, 2000);
-            strafe(1, 2000);
-            turn(1, 2000);
-            stop_motors();
+        int Line1 = 2000;
+        int Line2 = 1200;
+        int Line3 = 800;
 
+
+        strafe(-0.5, 1000);
+        drive(-0.5, Line1);
+        strafe(-0.5, 1350);
+        turn(0.5,650);
+        strafe(-0.5, 900);
     }
 
     public void drive(double power, long time) {
@@ -81,12 +86,16 @@ public class Modular_Autonomous extends LinearOpMode {
         // + = Forward Left, - = Backward Right
         MotorFR.setPower(power);
         MotorBL.setPower(power);
+        sleep(time);
+        stop_motors();
     }
 
     public void DiagRight(double power, long time) {
         // + = Forward Right, - = Backward Left
         MotorFL.setPower(power);
         MotorBR.setPower(power);
+        sleep(time);
+        stop_motors();
 
     }
 }
