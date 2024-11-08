@@ -14,7 +14,7 @@ public class MotorEncoderLearning extends LinearOpMode
     private DcMotor MotorFL;
     private DcMotor MotorBR;
     private DcMotor MotorBL;
-    private CRServo Grabber;
+    private DcMotor Vertical;
 
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -25,7 +25,7 @@ public class MotorEncoderLearning extends LinearOpMode
         MotorFL = hardwareMap.get(DcMotor.class, "MotorFL");
         MotorBR = hardwareMap.get(DcMotor.class, "MotorBR");
         MotorBL = hardwareMap.get(DcMotor.class, "MotorBL");
-        Grabber = hardwareMap.get(CRServo.class, "Grabber");
+        Vertical = hardwareMap.get(DcMotor.class, "Verticals");
 
         MotorFR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         MotorFL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
