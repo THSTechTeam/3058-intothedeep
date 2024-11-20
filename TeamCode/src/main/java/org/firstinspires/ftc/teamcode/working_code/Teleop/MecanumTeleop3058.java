@@ -12,7 +12,7 @@ public class MecanumTeleop3058 extends LinearOpMode
     private DcMotor MotorFL;
     private DcMotor MotorBR;
     private DcMotor MotorBL;
-    private DcMotor Vertical;
+    //private DcMotor Vertical;
 
     @Override
     public void runOpMode()
@@ -21,13 +21,15 @@ public class MecanumTeleop3058 extends LinearOpMode
         MotorFL = hardwareMap.get(DcMotor.class, "MotorFL");
         MotorBR = hardwareMap.get(DcMotor.class, "MotorBR");
         MotorBL = hardwareMap.get(DcMotor.class, "MotorBL");
-        Vertical = hardwareMap.get(DcMotor.class, "Vertical")
+        //Vertical = hardwareMap.get(DcMotor.class, "Vertical");
 
         MotorFR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         MotorFL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         MotorBR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         MotorBL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         MotorFR.setDirection(DcMotorSimple.Direction.REVERSE);
+        MotorBR.setDirection(DcMotorSimple.Direction.REVERSE);
+
         boolean ReverseDrive = false;
 
         waitForStart();

@@ -25,6 +25,7 @@ public class ParkingBA extends LinearOpMode {
 
 
         MotorFR.setDirection(DcMotorSimple.Direction.REVERSE);
+        MotorBR.setDirection(DcMotorSimple.Direction.REVERSE);
         MotorFR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         MotorFL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         MotorBR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

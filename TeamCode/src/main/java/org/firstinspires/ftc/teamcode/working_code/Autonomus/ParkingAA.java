@@ -25,6 +25,7 @@ public class ParkingAA extends LinearOpMode {
 
 
         MotorFR.setDirection(DcMotorSimple.Direction.REVERSE);
+        MotorBR.setDirection(DcMotorSimple.Direction.REVERSE);
         MotorFR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         MotorFL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         MotorBR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -32,7 +33,7 @@ public class ParkingAA extends LinearOpMode {
         waitForStart();
 
         drive(0.25, 200);
-        strafe(0.5, 2000    );
+        strafe(0.5, 2000);
         drive(-0.25, 50);
     }
 
