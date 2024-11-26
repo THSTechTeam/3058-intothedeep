@@ -13,6 +13,8 @@ public class ParkingBA extends LinearOpMode {
     private DcMotor MotorFL;
     private DcMotor MotorBR;
     private DcMotor MotorBL;
+    private DcMotor VerticalSlide = null;
+    private DcMotor HorizontalSlide = null;
 
     @Override
 
@@ -22,6 +24,8 @@ public class ParkingBA extends LinearOpMode {
         MotorFL = hardwareMap.dcMotor.get("MotorFL");
         MotorBR = hardwareMap.dcMotor.get("MotorBR");
         MotorBL = hardwareMap.dcMotor.get("MotorBL");
+        VerticalSlide = hardwareMap.dcMotor.get("VerticalSlide");
+        HorizontalSlide = hardwareMap.dcMotor.get("HorizontalSlide");
 
 
         MotorFR.setDirection(DcMotorSimple.Direction.REVERSE);

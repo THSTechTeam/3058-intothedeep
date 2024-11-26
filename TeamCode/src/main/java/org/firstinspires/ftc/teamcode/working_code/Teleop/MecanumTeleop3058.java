@@ -1,36 +1,46 @@
 package org.firstinspires.ftc.teamcode.working_code.Teleop;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-@TeleOp(name = "MecanumTeleop3058")
-public class MecanumTeleop3058 extends LinearOpMode
-{
+@Disabled
+@Autonomous(name = "Mod Auto", group = "Autonomous")
+public class Modular_Autonomous extends LinearOpMode {
+
+    //call motors here
     private DcMotor MotorFR;
     private DcMotor MotorFL;
     private DcMotor MotorBR;
     private DcMotor MotorBL;
-    //private DcMotor Vertical;
+    private DcMotor VerticalSlide = null;
+    private DcMotor HorizontalSlide = null;
 
     @Override
-    public void runOpMode()
-    {
-        MotorFR = hardwareMap.get(DcMotor.class, "MotorFR");
-        MotorFL = hardwareMap.get(DcMotor.class, "MotorFL");
-        MotorBR = hardwareMap.get(DcMotor.class, "MotorBR");
-        MotorBL = hardwareMap.get(DcMotor.class, "MotorBL");
-        //Vertical = hardwareMap.get(DcMotor.class, "Vertical");
 
+    public void runOpMode() throws InterruptedException {
+
+        MotorFR = hardwareMap.dcMotor.get("MotorFR");
+        MotorFL = hardwareMap.dcMotor.get("MotorFL");
+        MotorBR = hardwareMap.dcMotor.get("MotorBR");
+        MotorBL = hardwareMap.dcMotor.get("MotorBL");
+        HorizontalSlide = hardwareMap.dcMotor.get("HorizontalSlide");
+        VerticalSlide = hardwareMap.dcMotor.get(" ");
+
+
+
+        MotorFR.setDirection(DcMotorSimple.Direction.REVERSE);
         MotorFR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         MotorFL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         MotorBR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         MotorBL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        MotorFR.setDirection(DcMotorSimple.Direction.REVERSE);
-        MotorBR.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        boolean ReverseDrive = false;
+        HorizontalSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        VerticalSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        HorizontalSlide.setPower(0.1);
+        VerticalSlide.setPower(0.1);
 
         waitForStart();
         while (opModeIsActive()) {
@@ -54,13 +64,6 @@ public class MecanumTeleop3058 extends LinearOpMode
             double PowerBR = ((drive + strafe - turn) / max);
 
 
-
-            if (ReverseDrive) {
-                PowerFL = -PowerFL;
-                PowerBL = -PowerBL;
-                PowerFR = -PowerFR;
-                PowerBR = -PowerBR;
-            }
             if (gamepad1.dpad_up) {
                 MotorFR.setPower(0.5);
                 MotorFL.setPower(0.5);

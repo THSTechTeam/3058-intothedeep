@@ -14,6 +14,8 @@ public class Modular_Autonomous extends LinearOpMode {
     private DcMotor MotorFL;
     private DcMotor MotorBR;
     private DcMotor MotorBL;
+    private DcMotor VerticalSlide = null;
+    private DcMotor HorizontalSlide = null;
 
     @Override
 
@@ -23,6 +25,9 @@ public class Modular_Autonomous extends LinearOpMode {
         MotorFL = hardwareMap.dcMotor.get("MotorFL");
         MotorBR = hardwareMap.dcMotor.get("MotorBR");
         MotorBL = hardwareMap.dcMotor.get("MotorBL");
+        HorizontalSlide = hardwareMap.dcMotor.get("HorizontalSlide");
+        VerticalSlide = hardwareMap.dcMotor.get("VerticalSlide");
+
 
 
         MotorFR.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -30,6 +35,14 @@ public class Modular_Autonomous extends LinearOpMode {
         MotorFL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         MotorBR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         MotorBL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        HorizontalSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        VerticalSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        HorizontalSlide.setPower(0.1);
+        VerticalSlide.setPower(0.1);
+
+        //HorizontalSlide = hardwareMap.dcMotor.get("")
         waitForStart();
 
             drive(1, 2000);
