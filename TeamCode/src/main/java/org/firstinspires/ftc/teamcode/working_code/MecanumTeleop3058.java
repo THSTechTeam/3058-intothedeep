@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.working_code.Teleop;
+package org.firstinspires.ftc.teamcode.working_code;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 @Disabled
-@Autonomous(name = "Mod Auto", group = "Autonomous")
+@Autonomous(name = "MecaunumTeleop", group = "Teleop")
 public class Modular_Autonomous extends LinearOpMode {
 
     //call motors here
@@ -14,8 +14,8 @@ public class Modular_Autonomous extends LinearOpMode {
     private DcMotor MotorFL;
     private DcMotor MotorBR;
     private DcMotor MotorBL;
-    private DcMotor VerticalSlide = null;
-    private DcMotor HorizontalSlide = null;
+    private DcMotor VerticalSlide;
+    private DcMotor HorizontalSlide;
 
     @Override
 
@@ -26,7 +26,7 @@ public class Modular_Autonomous extends LinearOpMode {
         MotorBR = hardwareMap.dcMotor.get("MotorBR");
         MotorBL = hardwareMap.dcMotor.get("MotorBL");
         HorizontalSlide = hardwareMap.dcMotor.get("HorizontalSlide");
-        VerticalSlide = hardwareMap.dcMotor.get(" ");
+        VerticalSlide = hardwareMap.dcMotor.get("VerticalSlide");
 
 
 
@@ -45,12 +45,23 @@ public class Modular_Autonomous extends LinearOpMode {
         waitForStart();
         while (opModeIsActive()) {
 
-            /*if (gamepad1.x) {
-                ReverseDrive = true;
-            } if (gamepad1.y) {
-                ReverseDrive = false;
+            if (gamepad2.a)
+            {
+                VerticalSlide.setTargetPosition(0);
             }
-             */
+            if (gamepad2.x)
+            {
+                HorizontalSlide.setTargetPosition(0);
+            }
+            if (gamepad2.y)
+            {
+                VerticalSlide.setTargetPosition(100);
+            }
+            if (gamepad2.y)
+            {
+                VerticalSlide.setTargetPosition(100);
+            }
+
 
             double drive = -gamepad1.left_stick_y;
             double strafe = gamepad1.left_stick_x;
