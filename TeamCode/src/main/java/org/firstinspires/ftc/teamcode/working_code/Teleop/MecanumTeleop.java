@@ -115,6 +115,9 @@ public class MecanumTeleop extends LinearOpMode {
             MotorBR.setPower(PowerBR);
             MotorBL.setPower(PowerBL);
 
+            VerticalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            HorizontalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
             telemetry.addData("Vertical Slide position: ", VerticalSlide.getCurrentPosition());
             telemetry.addData("Horizontal Slide position: ", HorizontalSlide.getCurrentPosition());
             telemetry.update();

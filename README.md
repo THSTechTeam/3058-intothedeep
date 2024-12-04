@@ -1,9 +1,9 @@
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111# FTC Quick Start
+# FTC Quick Start
 
 This is a quick start guide for FTC mobile robot programming with Java and Android Studio.
 
 This repository is designed to accompany the FTC programming tutorials by [@BrandonPacewic](https://github.com/BrandonPacewic),
-if you have any questions feel free to reach out.
+if you have any questions feel free to reach ou     ``  t.
 
 ## Tutorials
 
