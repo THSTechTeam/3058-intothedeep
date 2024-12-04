@@ -5,6 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
+
 
 @TeleOp(name = "MecanumTeleop")
 public class MecanumTeleop extends LinearOpMode {
@@ -14,8 +16,8 @@ public class MecanumTeleop extends LinearOpMode {
     private DcMotor MotorFL;
     private DcMotor MotorBR;
     private DcMotor MotorBL;
-    private DcMotor VerticalSlide;
-    private DcMotor HorizontalSlide;
+    private DcMotorEx VerticalSlide;
+    private DcMotorEx HorizontalSlide;
 
     @Override
 
@@ -25,8 +27,8 @@ public class MecanumTeleop extends LinearOpMode {
         MotorFL = hardwareMap.dcMotor.get("MotorFL");
         MotorBR = hardwareMap.dcMotor.get("MotorBR");
         MotorBL = hardwareMap.dcMotor.get("MotorBL");
-        HorizontalSlide = hardwareMap.dcMotor.get("HorizontalSlide");
-        VerticalSlide = hardwareMap.dcMotor.get("VerticalSlide");
+        HorizontalSlide = hardwareMap.get(DcMotorEx.class, "HorizontalSlide");
+        VerticalSlide = hardwareMap.get(DcMotorEx.class, "VerticalSlide");
 
 
 
@@ -36,15 +38,23 @@ public class MecanumTeleop extends LinearOpMode {
         MotorBR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         MotorBL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        HorizontalSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        VerticalSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        HorizontalSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT); //TODO set back to BRAKE
+        VerticalSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        //HorizontalSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+        //VerticalSlide.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        HorizontalSlide.setPower(0.1);
-        VerticalSlide.setPower(0.1);
+        /*HorizontalSlide.setTargetPositionTolerance(25);
+        VerticalSlide.setTargetPositionTolerance(25);*/
+
+//        HorizontalSlide.setPower(0.1);
+        //VerticalSlide.setPower(0.1);
+
+        telemetry.addData("Status", "Initialized");
+        telemetry.update();
 
         waitForStart();
         while (opModeIsActive()) {
-
+/*
             if (gamepad2.a)
             {
                 VerticalSlide.setTargetPosition(0);
@@ -55,14 +65,14 @@ public class MecanumTeleop extends LinearOpMode {
             }
             if (gamepad2.y)
             {
-                VerticalSlide.setTargetPosition(100);
+                VerticalSlide.setTargetPosition(1000);
             }
             if (gamepad2.y)
             {
-                VerticalSlide.setTargetPosition(100);
+                VerticalSlide.setTargetPosition(1000);
             }
 
-
+*/
             double drive = -gamepad1.left_stick_y;
             double strafe = gamepad1.left_stick_x;
             double turn = gamepad1.right_stick_x;
@@ -104,5 +114,10 @@ public class MecanumTeleop extends LinearOpMode {
             MotorFL.setPower(PowerFL);
             MotorBR.setPower(PowerBR);
             MotorBL.setPower(PowerBL);
+
+            telemetry.addData("Vertical Slide position: ", VerticalSlide.getCurrentPosition());
+            telemetry.addData("Horizontal Slide position: ", HorizontalSlide.getCurrentPosition());
+            telemetry.update();
+
         }}}
 
