@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.Servo;
 
-
+// TODO Clean Up Code (Remove Unnecessary components && add lots of comments)
 @TeleOp(name = "MecanumTeleop")
 public class MecanumTeleop extends LinearOpMode {
 
@@ -21,6 +21,17 @@ public class MecanumTeleop extends LinearOpMode {
     private DcMotorEx VerticalSlide;
     private DcMotorEx HorizontalSlide;
     private Servo TopGrabber;
+    private Servo GrabberPivot;
+    private CRServo GrabberPickUp;
+
+    int basket1;
+    int basket2;
+    int verticalStart;
+    int horizontalMax;
+    double tipPos;
+    double levelPos;
+    double GrabberPivotDefault;
+
 
     @Override
 
@@ -33,16 +44,19 @@ public class MecanumTeleop extends LinearOpMode {
         HorizontalSlide = hardwareMap.get(DcMotorEx.class, "HorizontalSlide");
         VerticalSlide = hardwareMap.get(DcMotorEx.class, "VerticalSlide");
         TopGrabber = hardwareMap.get(Servo.class, "TopGrabber");
+        GrabberPivot = hardwareMap.get(Servo.class, "GrabberPivot");
+        GrabberPickUp = hardwareMap.get(CRServo.class, "GrabberPickUp");
 
 
 
+        MotorBR.setDirection(DcMotorSimple.Direction.REVERSE);
         MotorFR.setDirection(DcMotorSimple.Direction.REVERSE);
         MotorFR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         MotorFL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         MotorBR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         MotorBL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        HorizontalSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT); //TODO set back to BRAKE
+        HorizontalSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         VerticalSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         HorizontalSlide.setDirection(DcMotorSimple.Direction.REVERSE);
         //VerticalSlide.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -70,10 +84,9 @@ public class MecanumTeleop extends LinearOpMode {
 
             if (gamepad2.a)
             {
-                VerticalSlide.setPower(-0.3);
-                VerticalSlide.setTargetPosition(1780);
-                VerticalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                VerticalSlide.setTargetPosition(verticalStart);
             }
+            /*
             if (gamepad2.b)
             {
                 HorizontalSlide.setTargetPosition(96);
@@ -84,19 +97,25 @@ public class MecanumTeleop extends LinearOpMode {
                 //Fully extended is 1750
                 HorizontalSlide.setTargetPosition(800);
                 //HorizontalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            }
+            }*/
             if (gamepad2.y)
             {   //Fully extended is 3898
-                VerticalSlide.setTargetPosition(5500);
+                VerticalSlide.setTargetPosition(basket2);
                 //VerticalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             }
-            if (VerticalSlide.getCurrentPosition() < 1700) {
-                VerticalSlide.setTargetPosition((int) (VerticalSlide.getCurrentPosition() - gamepad2.left_stick_y * 2000));
-            }
 
-            if (HorizontalSlide.getCurrentPosition() < 1700) {
+            if (gamepad2.x)
+            {
+                VerticalSlide.setTargetPosition(basket1);
+            }
+            /*if (VerticalSlide.getCurrentPosition() < 1700) {
+                VerticalSlide.setTargetPosition((int) (VerticalSlide.getCurrentPosition() - gamepad2.left_stick_y * 2000));
+            }*/
+
+            if (HorizontalSlide.getCurrentPosition() < horizontalMax) {
                 HorizontalSlide.setTargetPosition((int) (HorizontalSlide.getCurrentPosition() - gamepad2.right_stick_y * 2000));
             }
+
             double drive = -gamepad1.left_stick_y;
             double strafe = gamepad1.left_stick_x;
             double turn = gamepad1.right_stick_x;
@@ -133,9 +152,19 @@ public class MecanumTeleop extends LinearOpMode {
                 MotorBR.setPower(0.5);
                 MotorBL.setPower(-0.5);
             }
-                /*if (gamepad2.a){
-                    TopGrabber.setPosition(30);
-                }*/
+            if (gamepad1.x)
+            {
+                TopGrabber.setPosition(tipPos);
+            }
+            else if (gamepad1.b)
+            {
+                TopGrabber.setPosition(levelPos);
+            }
+            if (gamepad2.dpad_down)
+            {
+
+            }
+
 
             MotorFR.setPower(PowerFR);
             MotorFL.setPower(PowerFL);
