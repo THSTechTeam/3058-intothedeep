@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Gamepad;
+import com.qualcomm.robotcore.hardware.Servo;
 
 
 @TeleOp(name = "MecanumTeleop")
@@ -19,6 +20,7 @@ public class MecanumTeleop extends LinearOpMode {
     private DcMotor MotorBL;
     private DcMotorEx VerticalSlide;
     private DcMotorEx HorizontalSlide;
+    private Servo TopGrabber;
 
     @Override
 
@@ -30,6 +32,7 @@ public class MecanumTeleop extends LinearOpMode {
         MotorBL = hardwareMap.dcMotor.get("MotorBL");
         HorizontalSlide = hardwareMap.get(DcMotorEx.class, "HorizontalSlide");
         VerticalSlide = hardwareMap.get(DcMotorEx.class, "VerticalSlide");
+        TopGrabber = hardwareMap.get(Servo.class, "TopGrabber");
 
 
 
@@ -46,20 +49,24 @@ public class MecanumTeleop extends LinearOpMode {
 
 
 
-        HorizontalSlide.setPower(0.3);
-        VerticalSlide.setPower(0.3);
 
-        HorizontalSlide.setTargetPosition(96);
-        HorizontalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-        VerticalSlide.setTargetPosition(8);
-        VerticalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        //HorizontalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        //VerticalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
         waitForStart();
         while (opModeIsActive()) {
+
+            HorizontalSlide.setTargetPositionTolerance(15);
+            VerticalSlide.setTargetPositionTolerance(15);
+
+            HorizontalSlide.setPower(0.3);
+            VerticalSlide.setPower(0.3);
+
+            //HorizontalSlide.setTargetPosition(96);
+            //VerticalSlide.setTargetPosition(8);
 
             if (gamepad2.a)
             {
@@ -70,18 +77,18 @@ public class MecanumTeleop extends LinearOpMode {
             if (gamepad2.b)
             {
                 HorizontalSlide.setTargetPosition(96);
-                HorizontalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                //HorizontalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             }
             if (gamepad2.x)
             {
                 //Fully extended is 1750
-                HorizontalSlide.setTargetPosition(1700);
-                HorizontalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                HorizontalSlide.setTargetPosition(800);
+                //HorizontalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             }
             if (gamepad2.y)
             {   //Fully extended is 3898
                 VerticalSlide.setTargetPosition(5500);
-                VerticalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                //VerticalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             }
             if (VerticalSlide.getCurrentPosition() < 1700) {
                 VerticalSlide.setTargetPosition((int) (VerticalSlide.getCurrentPosition() - gamepad2.left_stick_y * 2000));
@@ -126,6 +133,9 @@ public class MecanumTeleop extends LinearOpMode {
                 MotorBR.setPower(0.5);
                 MotorBL.setPower(-0.5);
             }
+                /*if (gamepad2.a){
+                    TopGrabber.setPosition(30);
+                }*/
 
             MotorFR.setPower(PowerFR);
             MotorFL.setPower(PowerFL);
@@ -133,8 +143,8 @@ public class MecanumTeleop extends LinearOpMode {
             MotorBL.setPower(PowerBL);
 
 
-            //VerticalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            //HorizontalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            VerticalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            HorizontalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
 
             telemetry.addData("Current VerticalSlide.Power: ", VerticalSlide.getPower());
@@ -143,6 +153,7 @@ public class MecanumTeleop extends LinearOpMode {
             telemetry.addData("Current HorizontalSlide.Power: ", HorizontalSlide.getPower());
             telemetry.addData("Current HorizontalSlide.TargetPos: ", HorizontalSlide.getTargetPosition());
             telemetry.addData("Current HorizontalSlide.Pos: ", HorizontalSlide.getCurrentPosition());
+            telemetry.addData("Current TopGrabber.Pos: ", TopGrabber.getPosition());
             telemetry.update();
 
         }}}
