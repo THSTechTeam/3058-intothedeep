@@ -136,6 +136,10 @@ public class MecanumTeleop extends LinearOpMode {
                 /*if (gamepad2.a){
                     TopGrabber.setPosition(30);
                 }*/
+            PowerFR = gamepad1.a ? 1.0 : 0.0;  // A
+            PowerFL = gamepad1.y ? 1.0 : 0.0;  // Y
+            PowerBR = gamepad1.b ? 1.0 : 0.0;  // B
+            PowerBL = gamepad1.x ? 1.0 : 0.0;  // X
 
             MotorFR.setPower(PowerFR);
             MotorFL.setPower(PowerFL);
