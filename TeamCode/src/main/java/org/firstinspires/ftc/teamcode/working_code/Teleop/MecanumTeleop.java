@@ -22,7 +22,7 @@ public class MecanumTeleop extends LinearOpMode {
     private DcMotorEx HorizontalSlide;
     private Servo TopGrabber;
     private Servo GrabberPivot;
-    private CRServo GrabberPickUp;
+    private Servo GrabberPickUp;
 
 
 
@@ -39,7 +39,7 @@ public class MecanumTeleop extends LinearOpMode {
         VerticalSlide = hardwareMap.get(DcMotorEx.class, "VerticalSlide");
         TopGrabber = hardwareMap.get(Servo.class, "TopGrabber");
         GrabberPivot = hardwareMap.get(Servo.class, "GrabberPivot");
-        GrabberPickUp = hardwareMap.get(CRServo.class, "GrabberPickUp");
+        GrabberPickUp = hardwareMap.get(Servo.class, "GrabberPickUp");
 
 
 
@@ -62,30 +62,29 @@ public class MecanumTeleop extends LinearOpMode {
 
         //HorizontalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         //VerticalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
+        /*
         int verticalStart = VerticalSlide.getCurrentPosition();
         int horizontalStart = HorizontalSlide.getCurrentPosition();
         int basket1= verticalStart + 1650;
         int basket2 = verticalStart + 3900;
         int horizontalMax = horizontalStart = 1600;
-        double tipPos;
-        double levelPos;
+         */
+        double tipPos = 0.3;
+        double levelPos = 0.5;
         double GrabberPivotDefault;
         double slidesPower = 0.4;
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
-        HorizontalSlide.setTargetPosition(horizontalStart);
-        VerticalSlide.setTargetPosition(verticalStart);
 
-        //VerticalSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        //VerticalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+
 
 
         waitForStart();
         while (opModeIsActive()) {
-
+            /*
             HorizontalSlide.setTargetPositionTolerance(15);
             VerticalSlide.setTargetPositionTolerance(15);
 
@@ -93,8 +92,16 @@ public class MecanumTeleop extends LinearOpMode {
             HorizontalSlide.setPower(slidesPower);
             VerticalSlide.setPower(slidesPower);
 
+            HorizontalSlide.setTargetPosition(horizontalStart);
+            VerticalSlide.setTargetPosition(verticalStart);
+
+            VerticalSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            VerticalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+             */
 
 
+            /*
             if (gamepad2.a)
             {
                 VerticalSlide.setTargetPosition(verticalStart);
@@ -111,6 +118,7 @@ public class MecanumTeleop extends LinearOpMode {
                 HorizontalSlide.setTargetPosition(800);
                 //HorizontalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             }*/
+            /*
             else if (gamepad2.y)
             {   //Fully extended is 3898
                 VerticalSlide.setTargetPosition(basket2);
@@ -120,16 +128,16 @@ public class MecanumTeleop extends LinearOpMode {
             else if (gamepad2.x)
             {
                 VerticalSlide.setTargetPosition(basket1);
-            }
+            }*/
 
             /*if (VerticalSlide.getCurrentPosition() < 1700) {
                 VerticalSlide.setTargetPosition((int) (VerticalSlide.getCurrentPosition() - gamepad2.left_stick_y * 2000));
             }*/
-
+            /*
             if (HorizontalSlide.getCurrentPosition() < horizontalMax) {
                 HorizontalSlide.setTargetPosition((int) (HorizontalSlide.getCurrentPosition() - gamepad2.right_stick_y * 2000));
             }
-
+            */
             double drive = -gamepad1.left_stick_y;
             double strafe = gamepad1.left_stick_x;
             double turn = gamepad1.right_stick_x;
@@ -166,7 +174,7 @@ public class MecanumTeleop extends LinearOpMode {
                 MotorBR.setPower(0.5);
                 MotorBL.setPower(-0.5);
             }
-            /*if (gamepad1.x)
+            if (gamepad1.x)
             {
                 TopGrabber.setPosition(tipPos);
             }
@@ -174,10 +182,11 @@ public class MecanumTeleop extends LinearOpMode {
             {
                 TopGrabber.setPosition(levelPos);
             }
-            if (gamepad2.dpad_down)
-            {
 
-            }*/
+            if (gamepad2.dpad_up)
+
+
+
 
 
             MotorFR.setPower(PowerFR);
