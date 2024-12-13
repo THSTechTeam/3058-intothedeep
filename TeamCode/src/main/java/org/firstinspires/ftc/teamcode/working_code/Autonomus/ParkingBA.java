@@ -1,10 +1,11 @@
 package org.firstinspires.ftc.teamcode.working_code.Autonomus;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-
+@Disabled
 @Autonomous(name = "ParkingBA")
 public class ParkingBA extends LinearOpMode {
 
