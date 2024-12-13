@@ -24,13 +24,7 @@ public class MecanumTeleop extends LinearOpMode {
     private Servo GrabberPivot;
     private CRServo GrabberPickUp;
 
-    int basket1;
-    int basket2;
-    int verticalStart;
-    int horizontalMax;
-    double tipPos;
-    double levelPos;
-    double GrabberPivotDefault;
+
 
 
     @Override
@@ -57,8 +51,10 @@ public class MecanumTeleop extends LinearOpMode {
         MotorBL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         HorizontalSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        VerticalSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        VerticalSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         HorizontalSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+
+
         //VerticalSlide.setDirection(DcMotorSimple.Direction.REVERSE);
 
 
@@ -67,8 +63,25 @@ public class MecanumTeleop extends LinearOpMode {
         //HorizontalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         //VerticalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
+        int verticalStart = VerticalSlide.getCurrentPosition();
+        int horizontalStart = HorizontalSlide.getCurrentPosition();
+        int basket1= verticalStart + 1650;
+        int basket2 = verticalStart + 3900;
+        int horizontalMax = horizontalStart = 1600;
+        double tipPos;
+        double levelPos;
+        double GrabberPivotDefault;
+        double slidesPower = 0.4;
+
         telemetry.addData("Status", "Initialized");
         telemetry.update();
+
+        HorizontalSlide.setTargetPosition(horizontalStart);
+        VerticalSlide.setTargetPosition(verticalStart);
+
+        //VerticalSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //VerticalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
 
         waitForStart();
         while (opModeIsActive()) {
@@ -76,11 +89,11 @@ public class MecanumTeleop extends LinearOpMode {
             HorizontalSlide.setTargetPositionTolerance(15);
             VerticalSlide.setTargetPositionTolerance(15);
 
-            HorizontalSlide.setPower(0.3);
-            VerticalSlide.setPower(0.3);
 
-            //HorizontalSlide.setTargetPosition(96);
-            //VerticalSlide.setTargetPosition(8);
+            HorizontalSlide.setPower(slidesPower);
+            VerticalSlide.setPower(slidesPower);
+
+
 
             if (gamepad2.a)
             {
@@ -98,16 +111,17 @@ public class MecanumTeleop extends LinearOpMode {
                 HorizontalSlide.setTargetPosition(800);
                 //HorizontalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             }*/
-            if (gamepad2.y)
+            else if (gamepad2.y)
             {   //Fully extended is 3898
                 VerticalSlide.setTargetPosition(basket2);
                 //VerticalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             }
 
-            if (gamepad2.x)
+            else if (gamepad2.x)
             {
                 VerticalSlide.setTargetPosition(basket1);
             }
+
             /*if (VerticalSlide.getCurrentPosition() < 1700) {
                 VerticalSlide.setTargetPosition((int) (VerticalSlide.getCurrentPosition() - gamepad2.left_stick_y * 2000));
             }*/
@@ -152,7 +166,7 @@ public class MecanumTeleop extends LinearOpMode {
                 MotorBR.setPower(0.5);
                 MotorBL.setPower(-0.5);
             }
-            if (gamepad1.x)
+            /*if (gamepad1.x)
             {
                 TopGrabber.setPosition(tipPos);
             }
@@ -163,7 +177,7 @@ public class MecanumTeleop extends LinearOpMode {
             if (gamepad2.dpad_down)
             {
 
-            }
+            }*/
 
 
             MotorFR.setPower(PowerFR);
