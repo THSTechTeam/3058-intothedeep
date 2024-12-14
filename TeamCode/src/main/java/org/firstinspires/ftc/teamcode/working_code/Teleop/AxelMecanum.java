@@ -39,37 +39,110 @@ public class  AxelMecanum extends LinearOpMode {
         MotorFL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         MotorBR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         MotorBL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
         /*
+        HorizontalSlide.setTargetPosition(111);
+        VerticalSlide.setTargetPosition(111);
+
+        HorizontalSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        VerticalSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        */
         HorizontalSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         VerticalSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        */
+
+
+
         waitForStart();
         while (opModeIsActive()) {
-
             /*
+            VerticalSlide.setTargetPosition(111);
+            HorizontalSlide.setTargetPosition(111);
+
+            VerticalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            HorizontalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
             HorizontalSlide.setPower(0.3);
             VerticalSlide.setPower(0.3);
 
             if (gamepad2.a) {
                 HorizontalSlide.setTargetPosition(1000);
+
+                HorizontalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                HorizontalSlide.setPower(0.3);
+
             } else if (gamepad2.b) {
                 HorizontalSlide.setTargetPosition(2000);
+
+                HorizontalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                HorizontalSlide.setPower(0.3);
+
             } else {
                 HorizontalSlide.setTargetPosition(111);
+
+                HorizontalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                HorizontalSlide.setPower(0.3);
+
             }
             if (gamepad2.x) {
                 VerticalSlide.setTargetPosition(1000);
+
+                VerticalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                VerticalSlide.setPower(0.3);
+
             } else if (gamepad2.y) {
                 VerticalSlide.setTargetPosition(2000);
+
+                VerticalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                VerticalSlide.setPower(0.3);
+
             } else {
                 VerticalSlide.setTargetPosition(111);
-            }
+
+                VerticalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                VerticalSlide.setPower(0.3);
             */
+
+
             double drive = -gamepad1.left_stick_y;
             double strafe = gamepad1.left_stick_x;
             double turn = gamepad1.right_stick_x;
             double max = Math.max(Math.abs(strafe) + Math.abs(drive) + Math.abs(turn), 1);
+
+            //GrabberPivot.setPower(gamepad2.right_trigger-gamepad2.left_trigger);
+
+            if (gamepad2.x)
+            {
+                GrabberPivot.setPower(0.5);
+            }
+            else if (gamepad2.a)
+            {
+                GrabberPivot.setPower(-0.5);
+            }
+            else
+            {
+                GrabberPivot.setPower(0);
+            }
+
+            if (gamepad2.right_bumper)
+            {
+                GrabberPickUp.setPower(0.9);
+            }
+            else if (gamepad2.left_bumper)
+            {
+                GrabberPickUp.setPower(-0.9);
+            }
+            else
+            {
+                GrabberPickUp.setPower(0);
+            }
+
+            if (gamepad1.b)
+            {
+                TopGrabber.setPosition(0.8);
+            }
+            else if (gamepad1.x)
+            {
+                TopGrabber.setPosition(0.35 );
+            }
 
             double PowerFL = ((drive + strafe + turn) / max);
             double PowerBL = ((drive - strafe + turn) / max);
