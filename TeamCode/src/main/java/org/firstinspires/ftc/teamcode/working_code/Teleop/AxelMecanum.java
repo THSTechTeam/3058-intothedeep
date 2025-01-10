@@ -49,9 +49,8 @@ public class  AxelMecanum extends LinearOpMode {
         HorizontalSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         VerticalSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-
-
         waitForStart();
+        TopGrabber.setPosition(0.35);
         while (opModeIsActive()) {
             /*
             VerticalSlide.setTargetPosition(111);
@@ -100,50 +99,54 @@ public class  AxelMecanum extends LinearOpMode {
                 VerticalSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 VerticalSlide.setPower(0.3);
             */
-
-
             double drive = -gamepad1.left_stick_y;
             double strafe = gamepad1.left_stick_x;
             double turn = gamepad1.right_stick_x;
             double max = Math.max(Math.abs(strafe) + Math.abs(drive) + Math.abs(turn), 1);
 
-            //GrabberPivot.setPower(gamepad2.right_trigger-gamepad2.left_trigger);
+            //GrabberPivot.setPower(gamepad1.right_trigger-gamepad1.left_trigger);
 
             if (gamepad2.x)
             {
-                GrabberPivot.setPower(0.5);
+                GrabberPivot.setPower(1);
             }
-            else if (gamepad2.a)
-            {
-                GrabberPivot.setPower(-0.5);
+            else if (gamepad2.a) {
+                GrabberPivot.setPower(-1);
+            } else {
+                GrabberPivot.setPower(0.05);
             }
-            else
-            {
-                GrabberPivot.setPower(0);
-            }
+            //GrabberPivot.setPower(gamepad2.left_stick_y - gamepad2.left_stick_y);
+            telemetry.addData("Pivot.Power: ", GrabberPivot.getPower());
+            telemetry.addData("Pivot.Port: ", GrabberPivot.getPortNumber());
+            telemetry.update();
 
-            if (gamepad2.right_bumper)
-            {
+            if (gamepad2.right_bumper) {
                 GrabberPickUp.setPower(0.9);
-            }
-            else if (gamepad2.left_bumper)
-            {
+            } else if (gamepad2.left_bumper) {
                 GrabberPickUp.setPower(-0.9);
+            } else {
+                GrabberPickUp.setPower(0);
+            } if (gamepad1.b) {
+                TopGrabber.setPosition(0.8);
+            } else if (gamepad1.x) {
+                TopGrabber.setPosition(0.35);
+            }
+            /*
+            if (gamepad1.right_bumper)
+            {
+                VerticalSlide.setPower(0.5);
+            }
+            else if (gamepad1.left_bumper)
+            {
+                VerticalSlide.setPower(-0.75);
             }
             else
             {
-                GrabberPickUp.setPower(0);
+                VerticalSlide.setPower(0);
             }
-
-            if (gamepad1.b)
-            {
-                TopGrabber.setPosition(0.8);
-            }
-            else if (gamepad1.x)
-            {
-                TopGrabber.setPosition(0.35 );
-            }
-
+            */
+            VerticalSlide.setPower(gamepad1.right_trigger - gamepad1.left_trigger);
+            HorizontalSlide.setPower(gamepad2.left_trigger /2 - gamepad2.right_trigger / 2);
             double PowerFL = ((drive + strafe + turn) / max);
             double PowerBL = ((drive - strafe + turn) / max);
             double PowerFR = ((drive - strafe - turn) / max);
