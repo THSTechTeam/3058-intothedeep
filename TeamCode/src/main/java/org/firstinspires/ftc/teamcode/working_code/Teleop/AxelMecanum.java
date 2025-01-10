@@ -17,7 +17,7 @@ public class  AxelMecanum extends LinearOpMode {
     private DcMotor VerticalSlide;
     private DcMotor HorizontalSlide;
     private Servo TopGrabber;
-    private CRServo GrabberPivot;
+    private Servo GrabberPivot;
     private CRServo GrabberPickUp;
     @Override
 
@@ -30,7 +30,7 @@ public class  AxelMecanum extends LinearOpMode {
         HorizontalSlide = hardwareMap.get(DcMotor.class, "HorizontalSlide");
         VerticalSlide = hardwareMap.get(DcMotor.class, "VerticalSlide");
         TopGrabber = hardwareMap.get(Servo.class, "TopGrabber");
-        GrabberPivot = hardwareMap.get(CRServo.class, "GrabberPivot");
+        GrabberPivot = hardwareMap.get(Servo.class, "GrabberPivot");
         GrabberPickUp = hardwareMap.get(CRServo.class, "GrabberPickUp");
 
         MotorBR.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -49,8 +49,11 @@ public class  AxelMecanum extends LinearOpMode {
         HorizontalSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         VerticalSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+
         waitForStart();
         TopGrabber.setPosition(0.35);
+        float PivotPosition = 0;
+
         while (opModeIsActive()) {
             /*
             VerticalSlide.setTargetPosition(111);
@@ -106,18 +109,20 @@ public class  AxelMecanum extends LinearOpMode {
 
             //GrabberPivot.setPower(gamepad1.right_trigger-gamepad1.left_trigger);
 
-            if (gamepad2.x)
+
+
+            if (gamepad2.b)
             {
-                GrabberPivot.setPower(1);
+                 PivotPosition += 0.1;
             }
-            else if (gamepad2.a) {
-                GrabberPivot.setPower(-1);
-            } else {
-                GrabberPivot.setPower(0.05);
+            else if (gamepad2.x) {
+                 PivotPosition -= 0.1;
             }
+            GrabberPivot.setPosition(PivotPosition);
+
             //GrabberPivot.setPower(gamepad2.left_stick_y - gamepad2.left_stick_y);
-            telemetry.addData("Pivot.Power: ", GrabberPivot.getPower());
             telemetry.addData("Pivot.Port: ", GrabberPivot.getPortNumber());
+            telemetry.addData("GrabberPivot.Position: ", GrabberPivot.getPosition());
             telemetry.update();
 
             if (gamepad2.right_bumper) {
