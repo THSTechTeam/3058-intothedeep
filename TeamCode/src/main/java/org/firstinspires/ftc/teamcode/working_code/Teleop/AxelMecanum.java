@@ -111,14 +111,12 @@ public class  AxelMecanum extends LinearOpMode {
 
 
 
-            if (gamepad2.b)
-            {
-                 PivotPosition += 0.1;
+            if (gamepad2.b) {
+                GrabberPivot.setPosition(0);
+            } else if (gamepad2.x) {
+                GrabberPivot.setPosition(0.6);
             }
-            else if (gamepad2.x) {
-                 PivotPosition -= 0.1;
-            }
-            GrabberPivot.setPosition(PivotPosition);
+
 
             //GrabberPivot.setPower(gamepad2.left_stick_y - gamepad2.left_stick_y);
             telemetry.addData("Pivot.Port: ", GrabberPivot.getPortNumber());
