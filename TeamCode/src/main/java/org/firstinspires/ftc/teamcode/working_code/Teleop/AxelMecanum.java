@@ -18,7 +18,7 @@ public class  AxelMecanum extends LinearOpMode {
     private DcMotor HorizontalSlide;
     private Servo TopGrabber;
     private Servo GrabberPivot;
-    private CRServo GrabberPickUp;
+    //private CRServo GrabberPickUp;
     @Override
 
     public void runOpMode() throws InterruptedException {
@@ -31,7 +31,7 @@ public class  AxelMecanum extends LinearOpMode {
         VerticalSlide = hardwareMap.get(DcMotor.class, "VerticalSlide");
         TopGrabber = hardwareMap.get(Servo.class, "TopGrabber");
         GrabberPivot = hardwareMap.get(Servo.class, "GrabberPivot");
-        GrabberPickUp = hardwareMap.get(CRServo.class, "GrabberPickUp");
+        //GrabberPickUp = hardwareMap.get(CRServo.class, "GrabberPickUp");
 
         MotorBR.setDirection(DcMotorSimple.Direction.REVERSE);
         MotorFR.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -51,7 +51,8 @@ public class  AxelMecanum extends LinearOpMode {
 
 
         waitForStart();
-        TopGrabber.setPosition(0.35);
+        GrabberPivot.setPosition(0.395);
+        TopGrabber.setPosition(0.3);
         float PivotPosition = 0;
 
         while (opModeIsActive()) {
@@ -110,29 +111,40 @@ public class  AxelMecanum extends LinearOpMode {
             //GrabberPivot.setPower(gamepad1.right_trigger-gamepad1.left_trigger);
 
 
-
-            if (gamepad2.b) {
-                GrabberPivot.setPosition(0);
-            } else if (gamepad2.x) {
+            if (gamepad2.left_bumper) {
+                GrabberPivot.setPosition(0.395);
+            } else if (gamepad2.b) {
+                GrabberPivot.setPosition(0.416);
+            } else if (gamepad2.a){
+                    GrabberPivot.setPosition(0.5);
+            } else if (gamepad2.right_bumper) {
                 GrabberPivot.setPosition(0.6);
             }
-
 
             //GrabberPivot.setPower(gamepad2.left_stick_y - gamepad2.left_stick_y);
             telemetry.addData("Pivot.Port: ", GrabberPivot.getPortNumber());
             telemetry.addData("GrabberPivot.Position: ", GrabberPivot.getPosition());
+            //telemetry.addData("HorizontalCurrentPos: ", HorizontalSlide.getCurrentPosition());
+            //telemetry.addData("HorizontalTargetPos: ", HorizontalSlide.getTargetPosition());
             telemetry.update();
-
+            /*
             if (gamepad2.right_bumper) {
                 GrabberPickUp.setPower(0.9);
-            } else if (gamepad2.left_bumper) {
+            }
+             else if (gamepad2.left_bumper) {
+
                 GrabberPickUp.setPower(-0.9);
-            } else {
+            }
+             else {
                 GrabberPickUp.setPower(0);
-            } if (gamepad1.b) {
+            }
+            */
+
+             if (gamepad1.b) {
                 TopGrabber.setPosition(0.8);
-            } else if (gamepad1.x) {
-                TopGrabber.setPosition(0.35);
+            }
+             else if (gamepad1.x) {
+                TopGrabber.setPosition(0.3);
             }
             /*
             if (gamepad1.right_bumper)
