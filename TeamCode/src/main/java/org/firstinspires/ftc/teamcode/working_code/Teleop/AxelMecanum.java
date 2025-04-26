@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
-@TeleOp(name = "Axels")
+@TeleOp(name = "3058Mecanum2024-5,")
 public class  AxelMecanum extends LinearOpMode {
 
     //call motors here
@@ -27,11 +27,6 @@ public class  AxelMecanum extends LinearOpMode {
         MotorFL = hardwareMap.dcMotor.get("MotorFL");
         MotorBR = hardwareMap.dcMotor.get("MotorBR");
         MotorBL = hardwareMap.dcMotor.get("MotorBL");
-        HorizontalSlide = hardwareMap.get(DcMotor.class, "HorizontalSlide");
-        VerticalSlide = hardwareMap.get(DcMotor.class, "VerticalSlide");
-        TopGrabber = hardwareMap.get(Servo.class, "TopGrabber");
-        GrabberPivot = hardwareMap.get(Servo.class, "GrabberPivot");
-        //GrabberPickUp = hardwareMap.get(CRServo.class, "GrabberPickUp");
 
         MotorBR.setDirection(DcMotorSimple.Direction.REVERSE);
         MotorFR.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -39,21 +34,9 @@ public class  AxelMecanum extends LinearOpMode {
         MotorFL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         MotorBR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         MotorBL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        /*
-        HorizontalSlide.setTargetPosition(111);
-        VerticalSlide.setTargetPosition(111);
-
-        HorizontalSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        VerticalSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        */
-        HorizontalSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        VerticalSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 
         waitForStart();
-        GrabberPivot.setPosition(0.395);
-        TopGrabber.setPosition(0.3);
-        float PivotPosition = 0;
 
         while (opModeIsActive()) {
             /*

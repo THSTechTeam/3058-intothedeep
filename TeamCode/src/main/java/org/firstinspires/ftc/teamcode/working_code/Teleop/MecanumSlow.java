@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.working_code.Testing;
+package org.firstinspires.ftc.teamcode.working_code.Teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 @Disabled
-@TeleOp(name = "MotorTesting")
-public class MotorTesting extends LinearOpMode
+@TeleOp(name = "MecanumSlow")
+public class MecanumSlow extends LinearOpMode
 {
     private DcMotor MotorFR;
     private DcMotor MotorFL;
@@ -28,15 +28,11 @@ public class MotorTesting extends LinearOpMode
         MotorBR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         MotorBL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         MotorFR.setDirection(DcMotorSimple.Direction.REVERSE);
-        boolean ReverseDrive = false;
 
         waitForStart();
         while (opModeIsActive())
         {
-            if (gamepad1.x) {
-                ReverseDrive = true;
-            } if (gamepad1.y) {
-            ReverseDrive = false;
+
         }
 
             double drive = -gamepad1.left_stick_y;
@@ -52,18 +48,6 @@ public class MotorTesting extends LinearOpMode
 
 
 
-            if (ReverseDrive) {
-                PowerFL = -PowerFL;
-                PowerBL = -PowerBL;
-                PowerFR = -PowerFR;
-                PowerBR = -PowerBR;
-            }
-            // Below is the motor tests
-            PowerFR = gamepad1.a ? 1.0 : 0.0;  // A
-            PowerFL = gamepad1.y ? 1.0 : 0.0;  //
-            PowerBR = gamepad1.b ? 1.0 : 0.0;  // B
-            PowerBL = gamepad1.x ? 1.0 : 0.0;  // X
-
             MotorFR.setPower(PowerFR);
             MotorFL.setPower(PowerFL);
             MotorBR.setPower(PowerBR);
@@ -72,4 +56,3 @@ public class MotorTesting extends LinearOpMode
 
 
     }
-}
